@@ -64,35 +64,11 @@
 import { computed, reactive, ref } from 'vue';
 import { directive as vClickOutside } from 'click-outside-vue3';
 import { ChevronDownIcon, CheckCircleIcon, CheckIcon } from '@heroicons/vue/solid';
-
-interface Props {
-  multiple?: boolean;
-  options: any[];
-  title: string;
-  modelValue: any;
-  optionLabel: string;
-  optionValue: string;
-  modifyClasses?: (initialClasses: Classes) => Classes;
-}
+import { Classes, Props } from './types';
+import { defaultClasses } from './defaultClasses';
 
 interface Emits {
   (e: 'update:modelValue', modelValue: Props['modelValue']): void;
-}
-
-interface Classes {
-  root: string[],
-  label: string[],
-  labelTitle: string[],
-  labelCounter: string[],
-  labelCounterNumber: string[],
-  labelCounterIcon: string[],
-  labelChevronIcon: string[],
-  labelChevronIconOpen: string[],
-  dropdown: string[],
-  options: string[],
-  option: string[],
-  optionLabel: string[],
-  optionIcon: string[],
 }
 
 const props = defineProps<Props>();
@@ -102,58 +78,10 @@ function conditionalClasses(condition: boolean, classes: string[]): string[] {
   return condition ? classes : [];
 }
 
-const initialClasses: Classes = {
-  root:                 ['relative', 'select-none'],
-  label:                [
-    'px-4',
-    'py-3',
-    'bg-zinc-100',
-    'rounded',
-    'flex',
-    'flex-row',
-    'content-center',
-    'cursor-pointer',
-  ],
-  labelTitle:           ['grow', 'font-bold', 'flex', 'items-center'],
-  labelCounter:         [
-    'bg-emerald-800',
-    'text-zinc-100',
-    'rounded-full',
-    'w-5',
-    'h-5',
-    'ml-2',
-    'inline-flex',
-    'items-center',
-    'content-center',
-  ],
-  labelCounterNumber:   [
-    'grow', 'text-center', 'text-xs',
-  ],
-  labelCounterIcon:     ['w-3', 'h-3', 'rounded-full', 'ml-2', 'bg-emerald-800'],
-  labelChevronIcon:     ['flex-none', 'w-6', 'transition-transform', 'ml-2'],
-  labelChevronIconOpen: ['rotate-180'],
-  dropdown:             [
-    'absolute',
-    'bg-zinc-200',
-    'top-full',
-    'left-0',
-    'right-0',
-    'rounded',
-    'mt-1',
-    'shadow-md',
-    'overflow-hidden',
-    'z-10',
-  ],
-  options:              ['divide-y', 'divide-zinc-100'],
-  option:               ['px-4', 'py-3', 'flex', 'flex-row', 'cursor-pointer', 'hover:bg-zinc-100'],
-  optionLabel:          ['grow'],
-  optionIcon:           ['w-6', 'fill-emerald-800', 'p-0.5', 'border-2 ', 'border-emerald-800', 'rounded', 'flex-none'],
-};
-
-const classes = reactive<Classes>(initialClasses);
+const classes = reactive<Classes>(defaultClasses);
 
 if (props.modifyClasses) {
-  Object.assign(classes, props.modifyClasses(initialClasses));
+  Object.assign(classes, props.modifyClasses(defaultClasses));
 }
 
 const isDropdownOpen = ref(false);
