@@ -9,5 +9,17 @@
     "@heroicons/vue": "^1.0.0",
     "click-outside-vue3": "^4.0.1",
     "vue": "^3.0.0"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dzorogh/vue-tailwind-select.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dzorogh/vue-tailwind-select/issues"
+  },
+  "homepage": "https://github.com/Dzorogh/vue-tailwind-select#readme"
 }
