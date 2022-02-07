@@ -1,0 +1,13 @@
+{
+  "name": "@dzorogh/vue-tailwind-select",
+  "version": "1.0.0",
+  "description": "Vue component for select-like input, which can be modified with classes and have some initial setup",
+  "main": "TWSelect.vue",
+  "author": "Dzorogh",
+  "license": "ISC",
+  "dependencies": {
+    "@heroicons/vue": "^1.0.0",
+    "click-outside-vue3": "^4.0.1",
+    "vue": "^3.0.0"
+  }
+}
