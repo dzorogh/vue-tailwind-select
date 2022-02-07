@@ -1,4 +1,4 @@
-import { Classes } from './types';
+import { Classes } from './types/Classes';
 
 export default {
   root:                 ['relative', 'select-none'],

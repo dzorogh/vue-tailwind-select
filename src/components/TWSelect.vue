@@ -64,25 +64,35 @@
 import { computed, reactive, ref } from 'vue';
 import { directive as vClickOutside } from 'click-outside-vue3';
 import { ChevronDownIcon, CheckCircleIcon, CheckIcon } from '@heroicons/vue/solid';
-import { Classes, Props } from './types';
-import { defaultClasses } from './defaultClasses';
+import defaultClasses from '../defaultClasses';
+import { Classes } from '../types/Classes';
+
+interface Props {
+  multiple?: boolean;
+  options: any[];
+  title: string;
+  modelValue: any;
+  optionLabel: string;
+  optionValue: string;
+  classes?: Classes;
+}
 
 interface Emits {
   (e: 'update:modelValue', modelValue: Props['modelValue']): void;
 }
 
 const props = defineProps<Props>();
-const emit  = defineEmits<Emits>();
+const emit = defineEmits<Emits>();
 
 function conditionalClasses(condition: boolean, classes: string[]): string[] {
   return condition ? classes : [];
 }
 
-const classes = reactive<Classes>(defaultClasses);
-
-if (props.modifyClasses) {
-  Object.assign(classes, props.modifyClasses(defaultClasses));
-}
+// const classes = reactive<Classes>(defaultClasses);
+//
+// if (props.classes) {
+//   Object.assign(classes, props.classes);
+// }
 
 const isDropdownOpen = ref(false);
 
@@ -111,7 +121,7 @@ const sortedOptions = computed(() => {
 });
 
 function isOptionActive(option) {
-  const selected    = props.modelValue;
+  const selected = props.modelValue;
   const optionValue = getOptionValue(option);
   
   if (!props.multiple) {
@@ -127,7 +137,7 @@ function isOptionActive(option) {
 
 function toggleSelectOption(option) {
   // closeDropdown()
-  let selected      = props.modelValue;
+  let selected = props.modelValue;
   const optionValue = getOptionValue(option);
   
   if (!props.multiple) {

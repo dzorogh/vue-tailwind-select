@@ -2,17 +2,23 @@
   "name": "@dzorogh/vue-tailwind-select",
   "version": "1.0.2",
   "description": "Vue component for select-like input, which can be modified with classes and have some initial setup",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "author": "Dzorogh",
   "license": "ISC",
   "dependencies": {
     "@heroicons/vue": "^1.0.0",
-    "click-outside-vue3": "^4.0.1",
-    "vue": "^3.0.0"
+    "click-outside-vue3": "^4.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "rollup": "^2.67.1",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "rollup-plugin-vue": "^6.0.0",
+    "typescript": "^4.5.5"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c",
+    "prepublishOnly": "yarn build"
   },
   "repository": {
     "type": "git",
